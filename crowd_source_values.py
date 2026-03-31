@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit import session_state as ss
 from streamlit_gsheets import GSheetsConnection 
 import pandas as pd
 import numpy as np
@@ -13,10 +14,15 @@ pl_highlight = '#F1C647'
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
 
-@st.cache_data
-def load_game():
-    return pd.read_parquet('starter_games.parquet').sample().round(2)
-game_line = load_game()
+if 'index' not in ss:
+    ss['index'] = np.random.randint(0,19031)
+
+def load_game(index):
+    game_line = pd.read_parquet('starter_games.parquet').iloc[[index]].round(2)
+    return game_line
+    
+game_line = load_game(ss['index'])
+
 st.dataframe(game_line,hide_index=True)
 
 slider_label = f'<p style="color:{pl_text}; font-weight: bold; font-size: 24px;">Start Score (1 = Terrible, 4 = Average, 7 = Amazing)</p>'
@@ -38,5 +44,5 @@ if st.button("Submit Score"):
                       game_line],
                      ignore_index=True),
       )
-    st.cache_data.clear()
+    del st.session_state['index']
     st.rerun()
