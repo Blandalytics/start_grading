@@ -10,11 +10,10 @@ sheet_url = 'https://docs.google.com/spreadsheets/d/14oyLIXsnDM4IZqGAca7mk5831_1
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 game_line = pl.read_parquet('starter_games.parquet').sample()
-st.datatframe(game_line)
+st.dataframe(game_line)
 
 game_score = st.slider('Start Score',min_value=1, max_value=7,value=4)
 
-st.button("Submit", type="primary")
 if st.button("Submit Score"):
     game_line = game_line.with_columns(pl.lit(game_score).alias("Score"))
     game_line = conn.update(
