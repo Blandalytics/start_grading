@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_gsheets import GSheetsConnection 
-import polars as pl
+import pandas as pd
 import numpy as np
 from pyfonts import set_default_font, load_google_font
 
@@ -11,17 +11,23 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 
 @st.cache_data
 def load_game():
-    return pl.read_parquet('starter_games.parquet').sample().with_columns(pl.all().round(2))
+    return pd.read_parquet('starter_games.parquet').sample().round(2)
 game_line = load_game()
 st.dataframe(game_line)
 
 game_score = st.slider('Start Score',min_value=1, max_value=7,value=4)
 
 if st.button("Submit Score"):
-    game_line = game_line.with_columns(pl.lit(game_score).alias("Score"))
+    game_line['Score'] = game_score
+    score_df = conn.read(
+        worksheet="Responses",
+        ttl="10m"
+    )
     game_line = conn.update(
       worksheet="Responses",
-      data=game_line,
+      data=pd.concat([score_df,
+                      game_line],
+                     ignore_index=True),
       )
     st.cache_data.clear()
     st.rerun()
