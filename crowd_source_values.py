@@ -9,6 +9,7 @@ from pyfonts import set_default_font, load_google_font
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
 
+@st.cache_data
 def load_game():
     return pl.read_parquet('starter_games.parquet').sample().with_columns(pl.all().round(2))
 game_line = load_game()
