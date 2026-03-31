@@ -13,7 +13,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 def load_game():
     return pd.read_parquet('starter_games.parquet').sample().round(2)
 game_line = load_game()
-st.dataframe(game_line)
+st.dataframe(game_line,hide_index=True)
 
 game_score = st.slider('Start Score',min_value=1, max_value=7,value=4)
 
