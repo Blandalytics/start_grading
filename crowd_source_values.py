@@ -21,7 +21,7 @@ st.dataframe(game_line,hide_index=True)
 
 slider_label = f'<p style="color:{pl_text}; font-weight: bold; font-size: 24px;">Start Score (1 = Terrible, 4 = Average, 7 = Amazing)</p>'
 st.markdown(slider_label, unsafe_allow_html=True)
-game_score = st.slider(#'Start Score (1 = Terrible, 4 = Average, 7 = Amazing)',
+game_score = st.slider('',
                        min_value=1, 
                        max_value=7,
                        value=4)
