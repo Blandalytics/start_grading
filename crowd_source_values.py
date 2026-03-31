@@ -18,7 +18,7 @@ if 'index' not in ss:
     ss['index'] = np.random.randint(0,19031)
 
 def load_game(index):
-    game_line = pd.read_parquet('starter_games.parquet').iloc[[index]].round(2)
+    game_line = pd.read_parquet('starter_games.parquet').iloc[[index]].round(2).reset_index(names='game_id')
     return game_line
     
 game_line = load_game(ss['index'])
