@@ -18,7 +18,7 @@ if 'index' not in ss:
     ss['index'] = np.random.randint(0,19031)
 
 def load_game(index):
-    game_line = pd.read_parquet('starter_games.parquet').iloc[[index]].round(2).reset_index(names='game_id')
+    game_line = pd.read_parquet('starter_games.parquet').iloc[[index]].round(2)
     return game_line
     
 game_line = load_game(ss['index'])
@@ -43,7 +43,7 @@ if st.button("Submit Score"):
     game_line = conn.update(
       worksheet="Responses",
       data=pd.concat([score_df,
-                      game_line],
+                      game_line.reset_index(names='game_id')],
                      ignore_index=True),
       )
     st.cache_data.clear()
