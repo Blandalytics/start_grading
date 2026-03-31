@@ -44,5 +44,6 @@ if st.button("Submit Score"):
                       game_line],
                      ignore_index=True),
       )
+    st.cache_data.clear()
     del st.session_state['index']
     st.rerun()
