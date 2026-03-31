@@ -4,7 +4,11 @@ import pandas as pd
 import numpy as np
 from pyfonts import set_default_font, load_google_font
 
-# sheet_url = 'https://docs.google.com/spreadsheets/d/14oyLIXsnDM4IZqGAca7mk5831_1WnxG2WEoSoILo5mg/edit?usp=sharing'
+pl_white = '#FFFFFF'
+pl_background = '#292C42'
+pl_text = '#00D4FF'#'#72CBFD'
+pl_line_color = '#8D96B3'
+pl_highlight = '#F1C647'
 
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
