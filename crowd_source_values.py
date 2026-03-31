@@ -9,7 +9,8 @@ sheet_url = 'https://docs.google.com/spreadsheets/d/14oyLIXsnDM4IZqGAca7mk5831_1
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
 
-game_line = pl.read_parquet('starter_games.parquet').sample()
+game_line = pl.read_parquet('starter_games.parquet').sample().with_columns(pl.all().round(2))
+game_line = game_line.with_columns(pl.lit(game_score).alias("Score"))
 st.dataframe(game_line)
 
 game_score = st.slider('Start Score',min_value=1, max_value=7,value=4)
