@@ -15,7 +15,10 @@ def load_game():
 game_line = load_game()
 st.dataframe(game_line,hide_index=True)
 
-game_score = st.slider('Start Score',min_value=1, max_value=7,value=4)
+game_score = st.slider('Start Score (1 = Terrible, 4 = Average, 7 = Amazing)',
+                       min_value=1, 
+                       max_value=7,
+                       value=4)
 
 if st.button("Submit Score"):
     game_line['Score'] = game_score
