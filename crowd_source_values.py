@@ -15,7 +15,9 @@ def load_game():
 game_line = load_game()
 st.dataframe(game_line,hide_index=True)
 
-game_score = st.slider('Start Score (1 = Terrible, 4 = Average, 7 = Amazing)',
+slider_label = f'<p style="color:{pl_text}; font-weight: bold; font-size: 24px;">Start Score (1 = Terrible, 4 = Average, 7 = Amazing)</p>'
+st.markdown(slider_label, unsafe_allow_html=True)
+game_score = st.slider(#'Start Score (1 = Terrible, 4 = Average, 7 = Amazing)',
                        min_value=1, 
                        max_value=7,
                        value=4)
