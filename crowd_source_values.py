@@ -27,7 +27,7 @@ start_label = f'<p style="color:{pl_text}; font-weight: bold; font-size: 24px;">
 st.markdown(start_label, unsafe_allow_html=True)
 st.dataframe(game_line,hide_index=True)
 
-slider_label = f'<p style="color:{pl_text}; font-weight: bold; font-size: 24px;">Score that Start (1 = Terrible, 4 = Average, 7 = Amazing)</p>'
+slider_label = f'<p style="color:{pl_text}; font-weight: bold; font-size: 20px;">How good was that Start? (1 = Terrible, 4 = Average, 7 = Amazing)</p>'
 st.markdown(slider_label, unsafe_allow_html=True)
 game_score = st.slider('',
                        min_value=1, 
