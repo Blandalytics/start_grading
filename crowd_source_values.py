@@ -29,8 +29,25 @@ st.markdown(start_label, unsafe_allow_html=True)
 col1, col2, col3 = st.columns([0.2,0.6,0.2])
 
 with col2:
-    st.dataframe(game_line[game_line.columns.values[:6]],hide_index=True)
-    st.dataframe(game_line[game_line.columns.values[6:]],hide_index=True)
+    first_df = (
+        game_line[game_line.columns.values[:6]]
+        .style.set_properties(**{'text-align': 'center'})
+        .set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
+    )
+
+    # Display using markdown
+    st.markdown(first_df.to_html(), unsafe_allow_html=True)
+    
+    second_df = (
+        game_line[game_line.columns.values[6:]]
+        .style.set_properties(**{'text-align': 'center'})
+        .set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
+    )
+
+    # Display using markdown
+    st.markdown(second_df.to_html(), unsafe_allow_html=True)
+    # st.dataframe(game_line[game_line.columns.values[:6]],hide_index=True)
+    # st.dataframe(game_line[game_line.columns.values[6:]],hide_index=True)
 
 slider_label = f'<p style="color:{pl_text}; font-weight: bold; font-size: 20px;">How good was that Start? (1 = Terrible, 4 = Average, 7 = Amazing)</p>'
 st.markdown(slider_label, unsafe_allow_html=True)
