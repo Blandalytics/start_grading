@@ -51,42 +51,16 @@ st.markdown(start_label, unsafe_allow_html=True)
 game_line_text = f'<p style="color:w; text-align: center; font-weight: bold; font-size: 20px;">{game_line_text}</p>'
 st.markdown(game_line_text, unsafe_allow_html=True)
 
-# col1, col2, col3 = st.columns([0.3,0.4,0.3])
+col1, col2, col3 = st.columns([0.3,0.4,0.3])
 
-# with col2:
-#     first_df = (
-#         game_line[game_line.columns.values[:6]]
-#         .astype('str')
-#         .style
-#         .hide(axis="index")
-#         .set_properties(**{'text-align': 'center'})
-#         .set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
-#     )
-
-#     # Display using markdown
-#     st.markdown(first_df.to_html(), unsafe_allow_html=True)
-    
-#     second_df = (
-#         game_line[game_line.columns.values[6:]]
-#         .astype('str')
-#         .style
-#         .hide(axis="index")
-#         .set_properties(**{'text-align': 'center'})
-#         .set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
-#     )
-
-#     # Display using markdown
-#     st.markdown(second_df.to_html(), unsafe_allow_html=True)
-#     # st.dataframe(game_line[game_line.columns.values[:6]],hide_index=True)
-#     # st.dataframe(game_line[game_line.columns.values[6:]],hide_index=True)
-
-slider_label = f'<p style="color:{pl_text}; text-align: center; font-weight: bold; font-size: 20px;">What grade would you give that start?</p>'
-st.markdown(slider_label, unsafe_allow_html=True)
-game_grade = st.pills('',
-                      ['F','D-','D','D+','C-','C','C+','B-','B','B+','A-','A','A+'],
-                      default='C',
-                      # horizontal=True
-                     )
+with col2:
+    slider_label = f'<p style="color:{pl_text}; text-align: center; font-weight: bold; font-size: 20px;">What grade would you give that start?</p>'
+    st.markdown(slider_label, unsafe_allow_html=True)
+    game_grade = st.pills('',
+                          ['F','D-','D','D+','C-','C','C+','B-','B','B+','A-','A','A+'],
+                          default='C',
+                          # horizontal=True
+                         )
 
 if st.button("Submit Grade"):
     game_line = pd.DataFrame(game_line).T
