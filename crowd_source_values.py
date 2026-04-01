@@ -18,59 +18,84 @@ if 'index' not in ss:
     ss['index'] = np.random.randint(0,19031)
 
 def load_game(index):
-    game_line = pd.read_parquet('starter_games.parquet').iloc[[index]].round(2)
+    game_line = pd.read_parquet('starter_games.parquet').iloc[index].round(2)
     return game_line
     
 game_line = load_game(ss['index'])
 
+ip_adj = int(game_line['IP'])+(game_line['IP'] - int(game_line['IP']))*3/10
+earned_runs = int(game_line['ER'])
+hits = int(game_line['H'])
+hit_text = f'{hits} Hits' if hits!=1 else f'{hits} Hit'
+
+xbh_text = '('
+temp_text = []
+for stat in ['2B','3B','HR']:
+    stat_val = int(game_line[stat])
+    temp_text += [''if stat_val==0 else f'{stat_val} {stat}']
+xbh_text = '' if int(sum(game_line[['2B','3B','HR']]))==0 else xbh_text+', '.join(temp_text)+')'
+
+walks = int(game_line['BB'])
+walk_text = f'{walks} BBs' if walks!=1 else f'{walks} BB'
+
+strikeouts = int(game_line['SO'])
+strikeout_text = f'{strikeouts} Ks' if strikeouts!=1 else f'{strikeouts} K'
+
+era = game_line['ERA']
+whip = game_line['WHIP']
+
+game_line_text = f'{ip_adj:.1f} IP, {earned_runs} ER, {hit_text}{xbh_text}, {walk_text}, {strikeout_text} - {era:.2f}, {whip:.2f}'
+
 start_label = f'<p style="color:{pl_text}; text-align: center; font-weight: bold; font-size: 24px;">Start Results</p>'
 st.markdown(start_label, unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns([0.3,0.4,0.3])
+game_line_text = f'<p style="color:w; text-align: center; font-weight: bold; font-size: 20px;">{game_line_text}</p>'
+st.markdown(game_line_text, unsafe_allow_html=True)
 
-with col2:
-    first_df = (
-        game_line[game_line.columns.values[:6]]
-        .astype('str')
-        .style
-        .hide(axis="index")
-        .set_properties(**{'text-align': 'center'})
-        .set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
-    )
+# col1, col2, col3 = st.columns([0.3,0.4,0.3])
 
-    # Display using markdown
-    st.markdown(first_df.to_html(), unsafe_allow_html=True)
+# with col2:
+#     first_df = (
+#         game_line[game_line.columns.values[:6]]
+#         .astype('str')
+#         .style
+#         .hide(axis="index")
+#         .set_properties(**{'text-align': 'center'})
+#         .set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
+#     )
+
+#     # Display using markdown
+#     st.markdown(first_df.to_html(), unsafe_allow_html=True)
     
-    second_df = (
-        game_line[game_line.columns.values[6:]]
-        .astype('str')
-        .style
-        .hide(axis="index")
-        .set_properties(**{'text-align': 'center'})
-        .set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
-    )
+#     second_df = (
+#         game_line[game_line.columns.values[6:]]
+#         .astype('str')
+#         .style
+#         .hide(axis="index")
+#         .set_properties(**{'text-align': 'center'})
+#         .set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
+#     )
 
-    # Display using markdown
-    st.markdown(second_df.to_html(), unsafe_allow_html=True)
-    # st.dataframe(game_line[game_line.columns.values[:6]],hide_index=True)
-    # st.dataframe(game_line[game_line.columns.values[6:]],hide_index=True)
+#     # Display using markdown
+#     st.markdown(second_df.to_html(), unsafe_allow_html=True)
+#     # st.dataframe(game_line[game_line.columns.values[:6]],hide_index=True)
+#     # st.dataframe(game_line[game_line.columns.values[6:]],hide_index=True)
 
-slider_label = f'<p style="color:{pl_text}; text-align: center; font-weight: bold; font-size: 20px;">How good was that Start?<br>(1 = Terrible, 3 = Average, 5 = Amazing)</p>'
+slider_label = f'<p style="color:{pl_text}; text-align: center; font-weight: bold; font-size: 20px;">What grade would you give that start?</p>'
 st.markdown(slider_label, unsafe_allow_html=True)
-game_score = st.slider('',
-                       min_value=1, 
-                       max_value=5,
-                       value=3)
+game_grade = st.radio('',['F','D-','D','D+','C-','C','C+','B-','B','B+','A-','A','A+'],
+                     index=5,horizontal=True)
 
-if st.button("Submit Score"):
-    game_line['Score'] = game_score
-    score_df = conn.read(
+if st.button("Submit Grade"):
+    game_line = pd.DataFrame(game_line).T
+    game_line['Grade'] = game_grade
+    grade_df = conn.read(
         worksheet="Responses",
         ttl="10m"
     )
     game_line = conn.update(
       worksheet="Responses",
-      data=pd.concat([score_df,
+      data=pd.concat([grade_df,
                       game_line.reset_index(names='game_id')],
                      ignore_index=True),
       )
