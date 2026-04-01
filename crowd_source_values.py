@@ -4,6 +4,8 @@ from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 import numpy as np
 from pyfonts import set_default_font, load_google_font
+from PIL import Image
+import urllib
 
 def load_logo():
     # logo_loc = 'https://github.com/Blandalytics/PLV_viz/blob/main/data/PL-text-wht.png?raw=true'
