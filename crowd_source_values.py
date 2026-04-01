@@ -92,6 +92,7 @@ with col2:
         st.cache_data.clear()
         del st.session_state['index']
         st.rerun()
+        st.toast("Thanks for submitting a grade!", icon="✅")
 
 col1, col2, col3 = st.columns([0.2,0.6,0.2])
 with col2:
