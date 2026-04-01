@@ -31,7 +31,8 @@ hit_text = f'{hits} Hits' if hits!=1 else f'{hits} Hit'
 temp_text = []
 for stat in ['2B','3B','HR']:
     stat_val = int(game_line[stat])
-    temp_text += [''if stat_val==0 else f'{stat_val} {stat}']
+    if stat_val>0:
+        temp_text += [f'{stat_val} {stat}']
 xbh_text = '' if int(sum(game_line[['2B','3B','HR']]))==0 else '('+', '.join(temp_text)+')'
 
 walks = int(game_line['BB'])
