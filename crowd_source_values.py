@@ -5,6 +5,15 @@ import pandas as pd
 import numpy as np
 from pyfonts import set_default_font, load_google_font
 
+st.html("""
+    <style>
+        .stMainBlockContainer {
+            max-width:40rem;
+        }
+    </style>
+    """
+)
+
 pl_white = '#FFFFFF'
 pl_background = '#292C42'
 pl_text = '#00D4FF'#'#72CBFD'
