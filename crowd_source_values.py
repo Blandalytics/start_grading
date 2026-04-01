@@ -32,7 +32,9 @@ with col2:
     first_df = (
         game_line[game_line.columns.values[:6]]
         .astype('str')
-        .style.set_properties(**{'text-align': 'center'})
+        .style
+        .hide(axis="index")
+        .set_properties(**{'text-align': 'center'})
         .set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
     )
 
@@ -42,7 +44,9 @@ with col2:
     second_df = (
         game_line[game_line.columns.values[6:]]
         .astype('str')
-        .style.set_properties(**{'text-align': 'center'})
+        .style
+        .hide(axis="index")
+        .set_properties(**{'text-align': 'center'})
         .set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
     )
 
