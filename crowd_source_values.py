@@ -25,7 +25,8 @@ game_line = load_game(ss['index'])
 
 start_label = f'<p style="color:{pl_text}; font-weight: bold; font-size: 24px;">Start Results</p>'
 st.markdown(start_label, unsafe_allow_html=True)
-st.dataframe(game_line,hide_index=True)
+st.dataframe(game_line[game_line.columns.values[:6]],hide_index=True)
+st.dataframe(game_line[game_line.columns.values[6:]],hide_index=True)
 
 slider_label = f'<p style="color:{pl_text}; font-weight: bold; font-size: 20px;">How good was that Start? (1 = Terrible, 4 = Average, 7 = Amazing)</p>'
 st.markdown(slider_label, unsafe_allow_html=True)
