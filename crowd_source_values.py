@@ -67,16 +67,12 @@ st.markdown(input_label, unsafe_allow_html=True)
 
 # col1, col2, col3 = st.columns([0.365,0.27,0.365])
 # with col2:
-st.write('<style>div.row-widget.stRadio > div{flex-direction:row;justify-content: center;} </style>', unsafe_allow_html=True)
-
-st.write('<style>div.st-bf{flex-direction:column;} div.st-ag{font-weight:bold;padding-left:2px;}</style>', unsafe_allow_html=True)
-
-game_grade = st.radio('',
-                      ['F','D-','D','D+','C-','C','C+','B-','B','B+','A-','A','A+'],
-                      horizontal=True,
-                              # ['A+','A','A-','B+','B','B-','C+','C','C-','D+','D','D-','F'],
-                              index=6
-                              )
+game_grade = st.pills('',
+                      # ['F','D-','D','D+','C-','C','C+','B-','B','B+','A-','A','A+'],
+                      ['A+','A','A-','B+','B','B-','C+','C','C-','D+','D','D-','F'],
+                      width=400,
+                      value='C+'
+                      )
 col1, col2, col3 = st.columns([0.375,0.325,0.3])
 with col2:
     if st.button("Submit Grade"):
