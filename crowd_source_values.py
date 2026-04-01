@@ -55,12 +55,12 @@ with col2:
     # st.dataframe(game_line[game_line.columns.values[:6]],hide_index=True)
     # st.dataframe(game_line[game_line.columns.values[6:]],hide_index=True)
 
-slider_label = f'<p style="color:{pl_text}; font-weight: bold; font-size: 20px;">How good was that Start? (1 = Terrible, 4 = Average, 7 = Amazing)</p>'
+slider_label = f'<p style="color:{pl_text}; font-weight: bold; font-size: 20px;">How good was that Start? (1 = Terrible, 3 = Average, 5 = Amazing)</p>'
 st.markdown(slider_label, unsafe_allow_html=True)
 game_score = st.slider('',
                        min_value=1, 
-                       max_value=7,
-                       value=4)
+                       max_value=5,
+                       value=3)
 
 if st.button("Submit Score"):
     game_line['Score'] = game_score
