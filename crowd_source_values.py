@@ -69,7 +69,7 @@ col1, col2, col3 = st.columns(3)
 with col2:
     game_grade = st.pills('',
                           # ['F','D-','D','D+','C-','C','C+','B-','B','B+','A-','A','A+'],
-                          ['A+','A','A-','B+','B','B-','C+','C','C-','D+','D','D-','F'],
+                          ['A-','A','A+','B-','B','B+','C-','C','C+','D-','D','D+','F'],
                           width=160,
                           default='C'
                           )
