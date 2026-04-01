@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit import session_state as ss
 from streamlit_gsheets import GSheetsConnection 
+import time
 import pandas as pd
 import numpy as np
 from pyfonts import set_default_font, load_google_font
@@ -91,6 +92,7 @@ with col2:
           )
         st.cache_data.clear()
         del st.session_state['index']
+        time.sleep(0.5)
         st.toast("Thanks for submitting a grade!", icon="✅")
         st.rerun()
 
