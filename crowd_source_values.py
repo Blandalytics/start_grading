@@ -8,7 +8,8 @@ from pyfonts import set_default_font, load_google_font
 st.html("""
     <style>
         .stMainBlockContainer {
-            max-width:40rem;
+            width:100%;
+            max-width:200px;
         }
     </style>
     """
