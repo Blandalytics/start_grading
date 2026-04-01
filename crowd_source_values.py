@@ -64,7 +64,7 @@ st.markdown(game_line_text, unsafe_allow_html=True)
 input_label = f'<p style="color:{pl_text}; text-align: center; font-weight: bold; font-size: 20px;">What grade would you give that start?</p>'
 st.markdown(input_label, unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns([0.35,0.3,0.35])
+col1, col2, col3 = st.columns([0.36,0.28,0.36])
 with col2:
     game_grade = st.pills('',
                           ['A+','A','A-','B+','B','B-','C+','C','C-','D+','D','D-','F'],
