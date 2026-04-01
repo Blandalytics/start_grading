@@ -7,6 +7,15 @@ from pyfonts import set_default_font, load_google_font
 from PIL import Image
 import urllib
 
+def letter_logo():
+    logo_loc = 'https://res.cloudinary.com/dduabusaf/image/upload/v1772839606/teal_letter_logo_owufaj.png'
+    logo = Image.open(urllib.request.urlopen(logo_loc))
+    return logo
+
+letter_logo = letter_logo()
+
+st.set_page_config(page_title='MLB Start Grading', page_icon=letter_logo)
+
 pl_white = '#FFFFFF'
 pl_background = '#292C42'
 pl_text = '#00D4FF'#'#72CBFD'
