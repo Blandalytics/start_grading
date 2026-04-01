@@ -56,7 +56,8 @@ strikeout_text = f'{strikeouts} Ks' if strikeouts!=1 else f'{strikeouts} K'
 era = game_line['ERA']
 whip = game_line['WHIP']
 
-game_line_text = f'{ip_adj:.1f} IP, {earned_runs} ER, {hit_text}{xbh_text}, {walk_text}, {strikeout_text}<br>{era:.2f} ERA, {whip:.2f} WHIP'
+# game_line_text = f'{ip_adj:.1f} IP, {earned_runs} ER, {hit_text}{xbh_text}, {walk_text}, {strikeout_text}<br>{era:.2f} ERA, {whip:.2f} WHIP'
+game_line_text = f'{ip_adj:.1f} IP, {earned_runs} ER, {hit_text}{xbh_text}, {walk_text}, {strikeout_text}'
 
 start_label = f'<p style="color:{pl_text}; text-align: center; font-weight: bold; font-size: 24px;">Start Results</p>'
 st.markdown(start_label, unsafe_allow_html=True)
