@@ -26,7 +26,7 @@ game_line = load_game(ss['index'])
 start_label = f'<p style="color:{pl_text}; text-align: center; font-weight: bold; font-size: 24px;">Start Results</p>'
 st.markdown(start_label, unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns(3)
+col1, col2, col3 = st.columns([0.3,0.4,0.3])
 
 with col2:
     first_df = (
