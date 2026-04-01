@@ -61,20 +61,21 @@ with col2:
                           default='C',
                           # horizontal=True
                          )
-
-if st.button("Submit Grade"):
-    game_line = pd.DataFrame(game_line).T
-    game_line['Grade'] = game_grade
-    grade_df = conn.read(
-        worksheet="Responses",
-        ttl="10m"
-    )
-    game_line = conn.update(
-      worksheet="Responses",
-      data=pd.concat([grade_df,
-                      game_line.reset_index(names='game_id')],
-                     ignore_index=True),
-      )
-    st.cache_data.clear()
-    del st.session_state['index']
-    st.rerun()
+col1, col2, col3 = st.columns([0.4,0.2,0.4])
+with col2:
+    if st.button("Submit Grade"):
+        game_line = pd.DataFrame(game_line).T
+        game_line['Grade'] = game_grade
+        grade_df = conn.read(
+            worksheet="Responses",
+            ttl="10m"
+        )
+        game_line = conn.update(
+          worksheet="Responses",
+          data=pd.concat([grade_df,
+                          game_line.reset_index(names='game_id')],
+                         ignore_index=True),
+          )
+        st.cache_data.clear()
+        del st.session_state['index']
+        st.rerun()
