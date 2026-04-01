@@ -67,10 +67,10 @@ st.markdown(input_label, unsafe_allow_html=True)
 
 # col1, col2, col3 = st.columns([0.365,0.27,0.365])
 # with col2:
-game_grade = st.select_slider('',
+game_grade = st.radio('',
                               ['F','D-','D','D+','C-','C','C+','B-','B','B+','A-','A','A+'],
                               # ['A+','A','A-','B+','B','B-','C+','C','C-','D+','D','D-','F'],
-                              value='C'
+                              index=6
                               )
 col1, col2, col3 = st.columns([0.375,0.325,0.3])
 with col2:
