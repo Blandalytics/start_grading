@@ -23,7 +23,7 @@ def load_game(index):
     
 game_line = load_game(ss['index'])
 
-start_label = f'<p style="color:{pl_text}; font-weight: bold; font-size: 24px;">Start Results</p>'
+start_label = f'<p style="color:{pl_text}; text-align: center; font-weight: bold; font-size: 24px;">Start Results</p>'
 st.markdown(start_label, unsafe_allow_html=True)
 
 col1, col2, col3 = st.columns([0.2,0.6,0.2])
@@ -55,7 +55,7 @@ with col2:
     # st.dataframe(game_line[game_line.columns.values[:6]],hide_index=True)
     # st.dataframe(game_line[game_line.columns.values[6:]],hide_index=True)
 
-slider_label = f'<p style="color:{pl_text}; font-weight: bold; font-size: 20px;">How good was that Start? (1 = Terrible, 3 = Average, 5 = Amazing)</p>'
+slider_label = f'<p style="color:{pl_text}; text-align: center; font-weight: bold; font-size: 20px;">How good was that Start?<br>(1 = Terrible, 3 = Average, 5 = Amazing)</p>'
 st.markdown(slider_label, unsafe_allow_html=True)
 game_score = st.slider('',
                        min_value=1, 
