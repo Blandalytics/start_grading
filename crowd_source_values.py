@@ -92,7 +92,7 @@ with col2:
           )
         st.cache_data.clear()
         del st.session_state['index']
-        time.sleep(0.5)
+        time.sleep(1.5)
         st.toast("Thanks for submitting a grade!", icon="✅")
         st.rerun()
 
