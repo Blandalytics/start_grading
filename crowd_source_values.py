@@ -86,5 +86,6 @@ with col2:
 
 col1, col2, col3 = st.columns([0.2,0.6,0.2])
 with col2:
-    st.write('This app is designed to collect crowd-sourced grades for MLB Starter performance, with the goal of using the results to create better scales for evaluating and analyzing player performance. Thank you for your contribution!')
-    st.write('If you have any questions, please reach out to Kyle Bland on [Blue Sky](https://bsky.app/profile/blandalytics.pitcherlist.com) or [Twitter](https://x.com/blandalytics)')
+    with st.expander("See explanation"):
+        st.write('This app is designed to collect crowd-sourced grades for MLB Starter performance, with the goal of using the results to create better scales for evaluating and analyzing player performance. Thank you for your contribution!')
+        st.write('If you have any questions, please reach out to Kyle Bland on [Blue Sky](https://bsky.app/profile/blandalytics.pitcherlist.com) or [Twitter](https://x.com/blandalytics)')
