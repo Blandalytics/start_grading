@@ -63,7 +63,6 @@ with col2:
                           width=160,
                           default='C+'
                           )
-st.write(pd.DataFrame(game_line).T)
 col1, col2, col3 = st.columns([0.375,0.325,0.3])
 with col2:
     if st.button("Submit Grade"):
