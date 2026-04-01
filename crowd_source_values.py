@@ -70,7 +70,7 @@ st.markdown(input_label, unsafe_allow_html=True)
 game_grade = st.pills('',
                       # ['F','D-','D','D+','C-','C','C+','B-','B','B+','A-','A','A+'],
                       ['A+','A','A-','B+','B','B-','C+','C','C-','D+','D','D-','F'],
-                      width=400,
+                      width=200,
                       default='C+'
                       )
 col1, col2, col3 = st.columns([0.375,0.325,0.3])
