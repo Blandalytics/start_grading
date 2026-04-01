@@ -28,12 +28,11 @@ earned_runs = int(game_line['ER'])
 hits = int(game_line['H'])
 hit_text = f'{hits} Hits' if hits!=1 else f'{hits} Hit'
 
-xbh_text = '('
 temp_text = []
 for stat in ['2B','3B','HR']:
     stat_val = int(game_line[stat])
     temp_text += [''if stat_val==0 else f'{stat_val} {stat}']
-xbh_text = '' if int(sum(game_line[['2B','3B','HR']]))==0 else xbh_text+', '.join(temp_text)+')'
+xbh_text = '' if int(sum(game_line[['2B','3B','HR']]))==0 else '('+', '.join(temp_text)+')'
 
 walks = int(game_line['BB'])
 walk_text = f'{walks} BBs' if walks!=1 else f'{walks} BB'
@@ -44,7 +43,7 @@ strikeout_text = f'{strikeouts} Ks' if strikeouts!=1 else f'{strikeouts} K'
 era = game_line['ERA']
 whip = game_line['WHIP']
 
-game_line_text = f'{ip_adj:.1f} IP, {earned_runs} ER, {hit_text}{xbh_text}, {walk_text}, {strikeout_text} - {era:.2f}, {whip:.2f}'
+game_line_text = f'{ip_adj:.1f} IP, {earned_runs} ER, {hit_text}{xbh_text}, {walk_text}, {strikeout_text} - {era:.2f} ERA, {whip:.2f}WHIP'
 
 start_label = f'<p style="color:{pl_text}; text-align: center; font-weight: bold; font-size: 24px;">Start Results</p>'
 st.markdown(start_label, unsafe_allow_html=True)
