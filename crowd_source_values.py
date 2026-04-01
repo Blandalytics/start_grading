@@ -83,8 +83,11 @@ st.markdown(game_line_text, unsafe_allow_html=True)
 
 slider_label = f'<p style="color:{pl_text}; text-align: center; font-weight: bold; font-size: 20px;">What grade would you give that start?</p>'
 st.markdown(slider_label, unsafe_allow_html=True)
-game_grade = st.radio('',['F','D-','D','D+','C-','C','C+','B-','B','B+','A-','A','A+'],
-                     index=5,horizontal=True)
+game_grade = st.radio('',
+                      ['F','D-','D','D+','C-','C','C+','B-','B','B+','A-','A','A+'],
+                      index=5,
+                      # horizontal=True
+                     )
 
 if st.button("Submit Grade"):
     game_line = pd.DataFrame(game_line).T
