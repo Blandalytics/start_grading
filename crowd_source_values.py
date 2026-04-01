@@ -57,29 +57,29 @@ st.markdown(game_line_text, unsafe_allow_html=True)
 input_label = f'<p style="color:{pl_text}; text-align: center; font-weight: bold; font-size: 20px;">What grade would you give that start?</p>'
 st.markdown(input_label, unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns(3)
-with col2:
-    game_grade = st.pills('',
-                          # ['F','D-','D','D+','C-','C','C+','B-','B','B+','A-','A','A+'],
-                          ['A-','A','A+','B-','B','B+','C-','C','C+','D-','D','D+','F'],
-                          width=160,
-                          default='C'
-                          )
-col1, col2, col3 = st.columns([0.375,0.325,0.3])
-with col2:
-    if st.button("Submit Grade"):
-        game_line = pd.DataFrame(game_line).T
-        game_line['Grade'] = game_grade
-        grade_df = conn.read(
-            worksheet="Responses",
-            ttl="10m"
-        )
-        game_line = conn.update(
-          worksheet="Responses",
-          data=pd.concat([grade_df,
-                          game_line.reset_index(names='game_id')],
-                         ignore_index=True),
-          )
-        st.cache_data.clear()
-        del st.session_state['index']
-        st.rerun()
+# col1, col2, col3 = st.columns(3)
+# with col2:
+game_grade = st.pills('',
+                      # ['F','D-','D','D+','C-','C','C+','B-','B','B+','A-','A','A+'],
+                      ['A-','A','A+','B-','B','B+','C-','C','C+','D-','D','D+','F'],
+                      width=160,
+                      default='C'
+                      )
+# col1, col2, col3 = st.columns([0.375,0.325,0.3])
+# with col2:
+if st.button("Submit Grade"):
+    game_line = pd.DataFrame(game_line).T
+    game_line['Grade'] = game_grade
+    grade_df = conn.read(
+        worksheet="Responses",
+        ttl="10m"
+    )
+    game_line = conn.update(
+      worksheet="Responses",
+      data=pd.concat([grade_df,
+                      game_line.reset_index(names='game_id')],
+                     ignore_index=True),
+      )
+    st.cache_data.clear()
+    del st.session_state['index']
+    st.rerun()
