@@ -5,16 +5,6 @@ import pandas as pd
 import numpy as np
 from pyfonts import set_default_font, load_google_font
 
-st.html("""
-    <style>
-        .stMainBlockContainer {
-            width:100% !important;
-            max-width:600px;
-        }
-    </style>
-    """
-)
-
 pl_white = '#FFFFFF'
 pl_background = '#292C42'
 pl_text = '#00D4FF'#'#72CBFD'
@@ -73,6 +63,7 @@ with col2:
                           width=160,
                           default='C+'
                           )
+st.write(game_line)
 col1, col2, col3 = st.columns([0.375,0.325,0.3])
 with col2:
     if st.button("Submit Grade"):
