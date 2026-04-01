@@ -13,7 +13,7 @@ def load_logo():
     logo = Image.open(urllib.request.urlopen(logo_loc))
     return logo
 logo = load_logo()
-st.image(logo)
+st.image(logo,width=400)
 
 pl_white = '#FFFFFF'
 pl_background = '#292C42'
