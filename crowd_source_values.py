@@ -72,7 +72,7 @@ with col2:
                           default='C',
                           # horizontal=True
                          )
-col1, col2, col3 = st.columns([0.35,0.35,0.3])
+col1, col2, col3 = st.columns([0.375,0.325,0.3])
 with col2:
     if st.button("Submit Grade"):
         game_line = pd.DataFrame(game_line).T
