@@ -93,13 +93,12 @@ with col2:
                 ttl="5s"
             )
             attempts += 1
-        if grade_df.shape[0]>0:
-            game_line = conn.update(
-                worksheet="Responses",
-                data=pd.concat([grade_df,
-                                game_line.reset_index(names='game_id')],
-                               ignore_index=True),
-              )
+        game_line = conn.update(
+            worksheet="Responses",
+            data=pd.concat([grade_df,
+                            game_line.reset_index(names='game_id')],
+                           ignore_index=True),
+          )
         st.cache_data.clear()
         del st.session_state['index']
         st.toast("Thanks for submitting a grade!", icon="✅")
