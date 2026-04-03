@@ -35,8 +35,6 @@ game_list = load_games()
     
 if 'index' not in ss:
     ss['index'] = np.random.randint(0,19031)
-else:
-    st.toast("Thanks for submitting a grade!", icon="✅")
     
 game_line = game_list.iloc[ss['index']].round(2)
 
@@ -84,6 +82,7 @@ with col2:
 col1, col2, col3 = st.columns([0.375,0.325,0.3])
 with col2:
     if st.button("Submit Grade"):
+        st.toast("Thanks for submitting a grade!", icon="✅")
         game_line = pd.DataFrame(game_line).T
         game_line['Grade'] = game_grade
         grade_df = conn.read(
