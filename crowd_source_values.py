@@ -100,7 +100,8 @@ with col2:
                            ignore_index=True),
           )
         st.cache_data.clear()
-        del st.session_state['index']
+        # del st.session_state['index']
+        ss['index'] = np.random.randint(0,19031)
         st.toast("Thanks for submitting a grade!", icon="✅")
         time.sleep(1.5)
         st.rerun()
