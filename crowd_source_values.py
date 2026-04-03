@@ -103,8 +103,8 @@ with col2:
         st.cache_data.clear()
         ss['index'] = np.random.randint(0,19031)
         st.toast("Thanks for submitting a grade!", icon="✅")
-        time.sleep(1.5)
-        st.rerun()
+        # time.sleep(1.5)
+        # st.rerun()
 
 col1, col2, col3 = st.columns([0.2,0.6,0.2])
 with col2:
