@@ -33,7 +33,8 @@ def load_game(index):
     
 if 'index' not in ss:
     ss['index'] = np.random.randint(0,19031)
-    game_line = load_game(ss['index'])
+    
+game_line = load_game(ss['index'])
 
 ip_adj = int(game_line['IP'])+(game_line['IP'] - int(game_line['IP']))*3/10
 earned_runs = int(game_line['ER'])
