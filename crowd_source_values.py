@@ -26,15 +26,19 @@ pl_highlight = '#F1C647'
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
 
+@st.cache_data
+def load_games():
+    game_list = pd.read_parquet('starter_games.parquet')
+    return game_list
 
-def load_game(index):
-    game_line = pd.read_parquet('starter_games.parquet').iloc[index].round(2)
-    return game_line
+game_list = load_games()
     
 if 'index' not in ss:
     ss['index'] = np.random.randint(0,19031)
+else:
+    st.toast("Thanks for submitting a grade!", icon="✅")
     
-game_line = load_game(ss['index'])
+game_line = game_list.iloc[ss['index']].round(2)
 
 ip_adj = int(game_line['IP'])+(game_line['IP'] - int(game_line['IP']))*3/10
 earned_runs = int(game_line['ER'])
@@ -102,11 +106,8 @@ with col2:
                            ignore_index=True),
           )
         st.cache_data.clear()
-        # st.toast("Thanks for submitting a grade!", icon="✅")
         ss['index'] = np.random.randint(0,19031)
-        # game_line = load_game(ss['index'])
-        with st.spinner("Thanks for submitting a grade!"):
-            time.sleep(1.5)
+        # time.sleep(1.5)
         st.rerun()
 
 col1, col2, col3 = st.columns([0.2,0.6,0.2])
