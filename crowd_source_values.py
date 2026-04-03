@@ -102,11 +102,12 @@ with col2:
                            ignore_index=True),
           )
         st.cache_data.clear()
-        st.toast("Thanks for submitting a grade!", icon="✅")
+        # st.toast("Thanks for submitting a grade!", icon="✅")
         ss['index'] = np.random.randint(0,19031)
-        game_line = load_game(ss['index'])
-        # time.sleep(1.5)
-        # st.rerun()
+        # game_line = load_game(ss['index'])
+        with st.spinner("Thanks for submitting a grade!"):
+            time.sleep(1.5)
+        st.rerun()
 
 col1, col2, col3 = st.columns([0.2,0.6,0.2])
 with col2:
