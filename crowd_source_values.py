@@ -26,14 +26,14 @@ pl_highlight = '#F1C647'
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
 
-if 'index' not in ss:
-    ss['index'] = np.random.randint(0,19031)
 
 def load_game(index):
     game_line = pd.read_parquet('starter_games.parquet').iloc[index].round(2)
     return game_line
     
-game_line = load_game(ss['index'])
+if 'index' not in ss:
+    ss['index'] = np.random.randint(0,19031)
+    game_line = load_game(ss['index'])
 
 ip_adj = int(game_line['IP'])+(game_line['IP'] - int(game_line['IP']))*3/10
 earned_runs = int(game_line['ER'])
@@ -101,8 +101,9 @@ with col2:
                            ignore_index=True),
           )
         st.cache_data.clear()
-        ss['index'] = np.random.randint(0,19031)
         st.toast("Thanks for submitting a grade!", icon="✅")
+        ss['index'] = np.random.randint(0,19031)
+        game_line = load_game(ss['index'])
         # time.sleep(1.5)
         # st.rerun()
 
